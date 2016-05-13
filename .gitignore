@@ -1,0 +1,6 @@
+.idea
+node_modules
+tsconfig.json
+tslint.json
+**/*.js
+!lesson-1/exmaple.js
