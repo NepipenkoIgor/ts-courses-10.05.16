@@ -1,6 +1,7 @@
 .idea
 node_modules
 video
+typings
 tsconfig.json
 tslint.json
 **/*.js
