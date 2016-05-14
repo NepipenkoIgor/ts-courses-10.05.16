@@ -1,15 +1,20 @@
 {
-  "name": "ts10.05.16",
+  "name": "lesson_1",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Oleg Lustenko",
   "license": "ISC",
   "devDependencies": {
-    "tslint": "3.10.1",
-    "typescript": "1.9.0-dev.20160513"
-  }
+    "typescript": "^1.9.0-dev.20160513"
+  },
+  "dependencies": {
+    "awesome-typescript-loader": "^0.17.0",
+    "ts-loader": "^0.8.2",
+    "tslint": "^3.10.1"
+  },
+  "keywords": [],
+  "description": ""
 }
