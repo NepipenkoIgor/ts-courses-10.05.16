@@ -22,9 +22,9 @@ let menuList:menuList = [
                 items: [
                     {title: 'Змеи'},
                     {title: 'Птицы'},
-                    {title: 'Ящерицы'},
-                ],
-            },
+                    {title: 'Ящерицы'}
+                ]
+            }
         ]
     },
     {
@@ -42,19 +42,34 @@ let menuList:menuList = [
                 items: [
                     {title: 'Морская форель'}
                 ]
-            },
+            }
         ]
     }
 ];
 
 function generateMenu(items:menuList):string {
-    let html:string = `<ul>`;
+    let html:string = '';
+    
+    if(items && !Array.isArray(items)){
+        throw new TypeError('variable "items" must be like an Array');
+    }
+
+    if(!items || items.length == 0){
+        return html;
+    }
+
+    html += `<ul>`;
     for (let item of items) {
-        let hasItems:boolean = !!item.items;
+
+        let title:string = item.title,
+            items:menuList = item.items,
+            hasItems:boolean = !!(items && items.length);
+
         html += `<li>
-            <a class="title${hasItems ? '' : '-leaf'}">${item.title}</a>
-            ${hasItems ? generateMenu(item.items) : ''}
+            <a class="title${hasItems ? '' : '-leaf'}">${title}</a>
+            ${generateMenu(items)}
         </li>`;
+        
     }
     html += `</ul>`;
     return html;
