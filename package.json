@@ -1,0 +1,15 @@
+{
+  "name": "ts10.05.16",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tslint": "3.10.1",
+    "typescript": "1.9.0-dev.20160513"
+  }
+}
