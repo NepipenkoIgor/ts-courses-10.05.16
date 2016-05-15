@@ -3,9 +3,9 @@
  */
 
 type menuItem = { title:string, items?:menuItem[]};
-type meneList = menuItem[];
+type menuList = menuItem[];
 
-let meneList:meneList = [
+let menuList:menuList = [
     {
         title: 'Животные', items: [
         {
@@ -47,7 +47,7 @@ let meneList:meneList = [
 ];
 
 
-function generateMenu(list:meneList):string {
+function generateMenu(list:menuList):string {
     let z:string = '';
 
     for (let group of list) {
@@ -72,7 +72,7 @@ function generateMenu(list:meneList):string {
 
 
 let navMenuList:HTMLElement = document.querySelector('.menu') as HTMLElement;
-navMenuList.innerHTML = generateMenu(meneList);
+navMenuList.innerHTML = generateMenu(menuList);
 navMenuList.onclick = (e:MouseEvent) => {
     let el = e.target as HTMLElement;
     let classList = el.classList;
@@ -80,4 +80,4 @@ navMenuList.onclick = (e:MouseEvent) => {
         let parentLi = el.parentNode as HTMLElement;
         parentLi.classList.toggle('menu__title_open');
     }
-}
+};
