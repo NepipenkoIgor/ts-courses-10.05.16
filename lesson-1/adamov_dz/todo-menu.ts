@@ -1,38 +1,41 @@
-
 type muneList = { title:string,items?:muneList}[];
 
 let muneList:muneList = [
     {
-        title: 'Животные', 
+        title: 'Животные',
         items: [
+            {
+                title: 'Млекопитающие',
+                items: [
                     {
-                        title: 'Млекопитающие', 
+                        title: 'Коровы',
                         items: [
-                            {title: 'Коровы',
-                                items: [
-                                {title:'Пятнистая'},
-                                {title:'Белая'},
-                                {title:'Черная'}
-                            ]},
-                            {title: 'Ослы'},
-                            {title: 'Собаки'},
-                            {title: 'Тигры'}
+                            {title: 'Пятнистая'},
+                            {title: 'Белая'},
+                            {title: 'Черная'}
                         ]
                     },
+                    {title: 'Ослы'},
+                    {title: 'Собаки'},
+                    {title: 'Тигры'}
+                ]
+            },
+            {
+                title: 'Другие',
+                items: [
+                    {title: 'Змеи'},
+                    {title: 'Птицы'},
                     {
-                        title: 'Другие', 
+                        title: 'Ящерицы',
                         items: [
-                            {title: 'Змеи'},
-                            {title: 'Птицы'},
-                            {title: 'Ящерицы',
-                                items: [
-                                    {title:'Красная'},
-                                    {title:'Синяя'},
-                                    {title:'Зеленая'}
-                                ]}
+                            {title: 'Красная'},
+                            {title: 'Синяя'},
+                            {title: 'Зеленая'}
                         ]
                     }
                 ]
+            }
+        ]
     },
     {
         title: 'Рыбы', items: [
@@ -44,17 +47,21 @@ let muneList:muneList = [
         },
         {
             title: 'Форель', items: [
-            {title: 'Морская форель', 
+            {
+                title: 'Морская форель',
                 items: [
                     {title: 'Маленькая'},
                     {title: 'Средняя'},
                     {title: 'Большая'}
-                ]},
-            {title: 'Речная форель', items: [
+                ]
+            },
+            {
+                title: 'Речная форель', items: [
                 {title: 'Маленькая'},
                 {title: 'Средняя'},
-                {title: 'Большая', items: [{title:'И еще уровень'}]}
-            ]}
+                {title: 'Большая', items: [{title: 'И еще уровень'}]}
+            ]
+            }
         ]
         },
     ]
@@ -63,15 +70,17 @@ let muneList:muneList = [
 
 function generateMenu(list:muneList):string {
     let z:string = `<ul>`;
-    for (let a of list){
-        if (Array.isArray(a.items))
-        {
+
+    /**
+     * старайтесь избегать  ветвлений
+     *  вспомните о continue 
+     */
+    for (let a of list) {
+        if (Array.isArray(a.items)) {
             z += `<li>
                     <a class="title">${a.title}</a>`;
             z += generateMenu(a.items);
-        }
-        else
-        {
+        } else {
             z += `<li>
                     ${a.title}`;
         }
@@ -92,4 +101,4 @@ navMenuList.onclick = (e:MouseEvent) => {
         let parentLi = el.parentNode as HTMLElement;
         parentLi.classList.toggle('menu-open');
     }
-}
+};
