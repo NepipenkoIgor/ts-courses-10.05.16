@@ -1,26 +1,25 @@
-
 type MenuItem = { title:string, items?:MenuItem[] };
 
-function generateItemList (deep:number):MenuItem[] {
+function generateItemList(deep:number):MenuItem[] {
     let itemList:MenuItem[] = [];
-    let itemsCount:number = Math.floor(Math.random()*7);
-    for ( let i=0; i<itemsCount; i++ ) {
+    let itemsCount:number = Math.floor(Math.random() * 7);
+    for (let i = 0; i < itemsCount; i++) {
         itemList.push(generateMenuItem(i, deep));
     }
     return itemList;
 }
 
-function generateMenuItem (num:number, deep:number):MenuItem {
-    let item:MenuItem = { title: "level_"+String(deep)+"_item_"+num };
-    if ( deep > 0 ) {
-        let arr = generateItemList(deep-1);
-        if ( arr.length > 0 )
+function generateMenuItem(num:number, deep:number):MenuItem {
+    let item:MenuItem = {title: "level_" + String(deep) + "_item_" + num};
+    if (deep > 0) {
+        let arr = generateItemList(deep - 1);
+        if (arr.length > 0)
             item.items = arr;
     }
     return item;
 }
 
-function generateMenu (itemList:MenuItem[]):string {
+function generateMenu(itemList:MenuItem[]):string {
     let res:string = '<ul>';
     for (let item of itemList) {
         res += '<li>';
@@ -40,7 +39,7 @@ let navMenuList:HTMLElement = document.querySelector('.menu') as HTMLElement;
 let maxDeep:number = 7;
 let itemList:MenuItem[] = generateItemList(maxDeep);
 console.log("itemList: ", itemList);
-if ( itemList.length > 0 ) {
+if (itemList.length > 0) {
     navMenuList.innerHTML = generateMenu(itemList);
     navMenuList.onclick = (e:MouseEvent) => {
         let el = e.target as HTMLElement;
