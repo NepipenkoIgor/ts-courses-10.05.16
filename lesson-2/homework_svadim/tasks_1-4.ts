@@ -4,9 +4,6 @@
 //     Возвращает true, если все аргументы, кроме первого входят в первый.
 //     Первым всегда должен быть массив. 
 
-// function isInArray (dict:number[], ...args:number[]):boolean;
-// function isInArray (dict:string[], ...args:string[]):boolean;
-// function isInArray (dict:any[], ...args:any[]):boolean {
 function isInArray<T> (dict:T[], ...args:T[]):boolean {
     if (dict.length === 0) {
         return (args.length === 0);
@@ -19,27 +16,24 @@ function isInArray<T> (dict:T[], ...args:T[]):boolean {
     return true;
 }
 
-// let strArray = ["course", "TypeScript", "$100", "paid"];
-//
-// console.log(isInArray(strArray, "course", "paid"));
-// console.log(isInArray(strArray, "course", "typescript"));
-// console.log(isInArray(strArray, "course", "paid", "test"));
-// console.log(isInArray(strArray, ""));
-//
-// console.log("=====");
-//
-// let numArray = [10, 0, 22, 333];
-//
-// console.log(isInArray(numArray, 333, 0));
-// console.log(isInArray(numArray, 22, 101, 333));
-// console.log(isInArray(numArray, 10, 0, 22, 44));
-// console.log(isInArray(numArray, null));
-//
-// console.log("=====");
-//
-// console.log(isInArray([]));
-// console.log(isInArray([], ""));
-// console.log(isInArray([], 0));
+let strArray = ["course", "TypeScript", "$100", "paid"];
+let numArray = [10, 0, 22, 333];
+
+console.log("TASK #1: ");
+console.log(isInArray(strArray, "course", "paid"));
+console.log(isInArray(strArray, "course", "typescript"));
+console.log(isInArray(strArray, "course", "paid", "test"));
+console.log(isInArray(strArray, ""));
+console.log("=====");
+console.log(isInArray(numArray, 333, 0));
+console.log(isInArray(numArray, 22, 101, 333));
+console.log(isInArray(numArray, 10, 0, 22, 44));
+console.log(isInArray(numArray, null));
+console.log("=====");
+console.log(isInArray([]));
+console.log(isInArray([], ""));
+console.log(isInArray([], 0));
+
 
 
 
@@ -66,20 +60,17 @@ function summator (...args:any[]):any {
     return res;
 }
 
-// console.log(summator());
-// console.log(summator(2));
-// console.log(summator(2, 7));
-// console.log(summator(2, 7, 8));
-//
-// console.log("--------------");
-//
-// console.log(summator("12", "2", "7"));
-// console.log(summator("12", "", "7"));
-// console.log(summator("a12", "2", "7"));
-// console.log(summator("a12"));
-//
-// console.log("--------------");
-//
+console.log("TASK #2: ");
+console.log(summator());
+console.log(summator(2));
+console.log(summator(2, 7));
+console.log(summator(2, 7, 8));
+console.log("--------------");
+console.log(summator("12", "2", "7"));
+console.log(summator("12", "", "7"));
+console.log(summator("a12", "2", "7"));
+console.log(summator("a12"));
+console.log("--------------");
 // console.log(summator({}));
 
 
@@ -96,7 +87,6 @@ function summator (...args:any[]):any {
 function getUnique<T> (...args:T[]):T[] {
     let res:T[] = [];
     for (let arg of args) {
-        // if (res.indexOf(arg) < 0) {
         if ( ! isInArray(res, arg) ) {
             res.push(arg);
         }
@@ -104,25 +94,21 @@ function getUnique<T> (...args:T[]):T[] {
     return res;
 }
 
-// console.log(getUnique());
-// console.log(getUnique(2));
-// console.log(getUnique(2, 7));
-// console.log(getUnique(2, 7, 8, 8, 2, 5));
-//
-// console.log("--------------");
-//
-// console.log(getUnique("12", "12", "7"));
-// console.log(getUnique("12", "", "7"));
-// console.log(getUnique("a12", "a12", "7", "7"));
-// console.log(getUnique("a12"));
-//
-// console.log("--------------");
-//
-// console.log(getUnique(true, false, false, true, true));
-//
-// console.log("--------------");
-//
-// console.log(getUnique({a:1, b:"qq"}, {a:3, b:'QWERTY'}, {a:1, b:"qq"}));
+console.log("TASK #3: ");
+console.log(getUnique());
+console.log(getUnique(2).toString());
+console.log(getUnique(2, 7).toString());
+console.log(getUnique(2, 7, 8, 8, 2, 5).toString());
+console.log("--------------");
+console.log(getUnique("12", "12", "7").toString());
+console.log(getUnique("12", "", "7").toString());
+console.log(getUnique("a12", "a12", "7", "7").toString());
+console.log(getUnique("a12").toString());
+console.log("--------------");
+console.log(getUnique(true, false, false, true, true).toString());
+console.log("--------------");
+// TODO: не работает сравнение объектов
+console.log(getUnique({a:1, b:"qq"}, {a:3, b:'QWERTY'}, {a:1, b:"qq"}));
 
 
 
@@ -166,18 +152,13 @@ function convertSentense (sentence:string):string {
     return srcArray.join(delimiter);
 }
 
-// let str:string = "abc3fg_4mn7z";
-// console.log(`'${str}' >> '${convertSentense(str)}'`);
-// str = "s1tar3t 2 hellow";
-// console.log(`'${str}' >> '${convertSentense(str)}'`);
-// str = "s1ta$%r3t 2 hel^low";
-// console.log(`'${str}' >> '${convertSentense(str)}'`);
-// str = "s1tar3t 2   low5";
-// console.log(`'${str}' >> '${convertSentense(str)}'`);
-//
-
-
-
-
-
+console.log("TASK #4: ");
+let str:string = "abc3fg_4mn7z";
+console.log(`'${str}' >> '${convertSentense(str)}'`);
+str = "s1tar3t 2 hellow";
+console.log(`'${str}' >> '${convertSentense(str)}'`);
+str = "s1ta$%r3t 2 hel^low";
+console.log(`'${str}' >> '${convertSentense(str)}'`);
+str = "s1tar3t 2   low5";
+console.log(`'${str}' >> '${convertSentense(str)}'`);
 
