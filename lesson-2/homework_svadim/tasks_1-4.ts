@@ -44,20 +44,18 @@ console.log(isInArray([], 0));
 function summator (...args:number[]):number;
 function summator (...args:string[]):string;
 function summator (...args:any[]):any {
-    let summ:number = 0;
+// function summator<T> (...args:T[]):T {
+    let total:number = 0;
     for (let arg of args) {
-        if (typeof arg === "string") {
+        if (typeof arg === "string" || typeof arg === "number") {
             let num = Number(arg);
-            summ += isNaN(num) ? 0 : num;
-        } else if (typeof arg === "number") {
-            summ += arg;
+            total += isNaN(num) ? 0 : num;
         }
     }
-    let res:string|number = summ;
     if (typeof args[0] === "string") {
-        res = String(summ);
+        return String(total);
     }
-    return res;
+    return total;
 }
 
 console.log("TASK #2: ");
