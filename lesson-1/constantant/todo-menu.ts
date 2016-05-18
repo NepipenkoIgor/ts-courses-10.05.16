@@ -49,12 +49,16 @@ let menuList:menuList = [
 
 function generateMenu(items:menuList):string {
     let html:string = '';
-    
-    if(items && !Array.isArray(items)){
+    if (items && !Array.isArray(items)) {
         throw new TypeError('variable "items" must be like an Array');
     }
 
-    if(!items || items.length == 0){
+    /**
+     *  используйте === или  !items.length/
+     * 
+     */
+    
+    if (!items || items.length == 0) {
         return html;
     }
 
@@ -69,7 +73,7 @@ function generateMenu(items:menuList):string {
             <a class="title${hasItems ? '' : '-leaf'}">${title}</a>
             ${generateMenu(items)}
         </li>`;
-        
+
     }
     html += `</ul>`;
     return html;
