@@ -6,4 +6,6 @@ tslint.json
 **/*.js
 **/*.map
 !lesson-1/exmaple.js
+!lesson-3/webpack.config.js
 *.iml
+typings

@@ -2,34 +2,34 @@
  * Created by constantant on 18.05.2016.
  */
 
-function wordRevers(text:string):string{
-    
+function wordRevers(text:string):string {
+
     return text.replace(/([^\s]+)/g, reversed);
 
-    function reversed(word:string):string{
+    function reversed(word:string):string {
         let wordLen:number = word.length,
-            temp1:string[] = Array(wordLen),
+            temp1:string[] = Array(wordLen), ///Array.from , но у string есть же length
             temp2:string[] = [];
-        
-        for(let i = 0; i < wordLen; i++){
+
+        for (let i = 0; i < wordLen; i++) {
             let symbol = word[i],
                 isLetter = /[a-zA-Z]/.test(symbol);
-            
-            if(isLetter){
+
+            if (isLetter) {
                 temp2.push(symbol);
             }
             
-            if(!isLetter){
+            if (!isLetter) {
                 temp1[i] = (symbol);
             }
         }
-        
-        for(let i = 0; i < wordLen; i++){
-            if(!temp1[i]){
+
+        for (let i = 0; i < wordLen; i++) {
+            if (!temp1[i]) {
                 temp1[i] = temp2.pop();
             }
         }
-        
+
         return temp1.join('');
     }
 }
