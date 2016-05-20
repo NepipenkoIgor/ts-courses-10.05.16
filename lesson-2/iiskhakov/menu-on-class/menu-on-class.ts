@@ -16,6 +16,12 @@ class Menu {
         this.element.addEventListener('click', this.clickHandler.bind(this));
     }
 
+    /**
+     * 
+     * Public хорошо бы написать
+     * И почему обращаетесь к конструктору??? Логика что бы закрывать все меню?
+     * 
+     */
     getElem() : HTMLElement {
         return this.element;
     }

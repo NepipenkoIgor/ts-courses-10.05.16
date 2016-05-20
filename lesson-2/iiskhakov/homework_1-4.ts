@@ -34,6 +34,11 @@ function getUnique(...args : any[]) : any[]{
 
 let v = {f: '123'};
 let v2 = v;
+/**
+ *
+ * Все хорошо но {a: 1} и {a: 1} разные ссылки. Обратите внимание
+ *
+ */
 console.log(getUnique(null, `a`,'a', 'b', 'a', 'c', v, 'a', {a: 1}, v2, {a: 1}, undefined));
 
 // 4. /////////////////////////////////////////////////////////
@@ -53,6 +58,9 @@ function reverseOneWord(str: string) : string{
     let f : number = 0,                 // forward indexer
         b : number = str.length - 1;    // backward indexer
     let result: string[] = str.split('');
+    /**
+     * Если у вас логика цикл в цикле , надо пересматривать
+     */
     while(f<b){
         while(f<b && !result[f].match(/[a-z]/i)) { f++; };
         while(f<b && !result[b].match(/[a-z]/i)) { b--; };

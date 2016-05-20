@@ -3,6 +3,10 @@
  Аргументы могут быть либо строкового либо числового типа. Количество их не ограничено
  */
 
+/**
+ * 
+ * isNaN and parseInt?
+ */
 function summator(first:string, ...list:string[]):string;
 function summator(first:number, ...list:number[]):number;
 function summator(first:any, ...list:any[]):any {

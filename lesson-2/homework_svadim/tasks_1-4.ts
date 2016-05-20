@@ -19,8 +19,10 @@ function isInArray<T> (dict:T[], ...args:T[]):boolean {
 let strArray = ["course", "TypeScript", "$100", "paid"];
 let numArray = [10, 0, 22, 333];
 
+/// лучше бы было подчеркнуть каким типом обобщаете?
+
 console.log("TASK #1: ");
-console.log(isInArray(strArray, "course", "paid"));
+console.log(isInArray<string>(strArray, "course", "paid"));
 console.log(isInArray(strArray, "course", "typescript"));
 console.log(isInArray(strArray, "course", "paid", "test"));
 console.log(isInArray(strArray, ""));
@@ -127,6 +129,7 @@ function convertWord (word:string):string {
     let srcArray:string[] = word.split(delimiter);
     let revArray:string[] = word.split(delimiter);
     let res:string = "";
+    // старайтесь делать логику не чере do/while
     for (let s of srcArray) {
         if (isLetter(s)) {
             let ns = "";

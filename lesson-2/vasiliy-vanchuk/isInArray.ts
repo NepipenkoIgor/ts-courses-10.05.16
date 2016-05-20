@@ -1,3 +1,6 @@
+/**
+ * можно уточнить было функцию только на примитивы
+ */
 function isInArray(arr:Array<any>, ...search:Array<any>): boolean {
     return search.every((item) => arr.indexOf(item) >=0 );
 }
