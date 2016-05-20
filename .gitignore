@@ -4,6 +4,5 @@ lesson-1/constantant/tsconfig.json
 lesson-1/tsconfig.json
 tslint.json
 **/*.js
-**/*.js.map
 !lesson-1/exmaple.js
 *.iml
