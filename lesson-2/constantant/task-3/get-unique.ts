@@ -3,10 +3,10 @@
  */
 
 // почему не типизировать параметры ? 
-function getUnique(...array:any[]):any[] {
-    let unique:any[] = [];
-    array.forEach(function (item:any) {
-        let isUnique:boolean = !(unique.indexOf(item) + 1);
+function getUnique<T>(...array: T[]): T[] {
+    let unique: T[] = [];
+    array.forEach(function (item: T) {
+        let isUnique: boolean = !(unique.indexOf(item) + 1);
 
         if (isUnique) {
             unique.push(item);
@@ -16,7 +16,7 @@ function getUnique(...array:any[]):any[] {
 }
 
 console.log(
-    getUnique(1, 1, 1, 1, 1, 1, 1, 1),
-    getUnique(1, 1, 1, 1, 1, 1, 1, 2),
-    getUnique(1, 1, 1, 1, 1, 1, 0, 2)
+    getUnique<number>(1, 1, 1, 1, 1, 1, 1, 1),
+    getUnique<string>('1', '1', '1', '1', '1', '1', '1', '2'),
+    getUnique<number|string>(1, '1', 1, '1', 1, 1, 0, '2')
 );
