@@ -12,6 +12,7 @@ function isInArray(array: any[], ...targets: any[]):boolean {
         throw new Error('No target!');
     }
 
+    // работа в массиве с массивом не есть хорошо и почему не ()=>{}
     return targets.every(function (target:any) {
         return array.some(function (item:any) {
             return item === target;

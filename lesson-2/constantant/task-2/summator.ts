@@ -6,7 +6,7 @@ function summator(...numbers:(number|string)[]):number{
     let sum = 0;
     numbers.forEach(function (num:number|string, index:number) {
         let value = typeof num === 'string' ? parseFloat(num) : num;
-        
+        // скорее всего достаточно isNaN
         if(isNaN(value) || typeof value !== 'number'){
             throw new TypeError(`Argument #${index} is not valid!`);
         }

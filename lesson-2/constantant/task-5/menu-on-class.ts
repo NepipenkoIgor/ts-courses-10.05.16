@@ -13,12 +13,12 @@ interface MenuInterface {
 }
 
 class Menu implements MenuInterface {
-    private element: HTMLElement;
-    private menuList: menuList;
-    private id: number;
-    static increment: number = 0;
+    private element:HTMLElement;
+    private menuList:menuList;
+    private id:number;
+    static increment:number = 0;
 
-    constructor(menuList: menuList) {
+    constructor(menuList:menuList) {
         this.menuList = menuList;
         this.id = Menu.increment++;
     }
@@ -62,8 +62,9 @@ class Menu implements MenuInterface {
         }
     }
 
+    // document не есть хорошо . Может от елемента меню??
     private getItemById(id:string):HTMLElement {
-        return document.getElementById(id +'-'+ this.id);
+        return document.getElementById(id + '-' + this.id);
     }
 
     private generateMenu(items:menuList):string {

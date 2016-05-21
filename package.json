@@ -9,7 +9,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "ts-loader": "0.8.2",
     "tslint": "3.10.1",
-    "typescript": "^1.9.0-dev.20160514"
+    "typescript": "^1.9.0-dev.20160514",
+    "typings": "1.0.4",
+    "webpack": "1.13.1",
+    "whatwg-fetch": "1.0.0"
   }
 }

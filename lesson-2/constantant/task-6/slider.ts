@@ -4,14 +4,14 @@
 
 
 interface Coords {
-    left: number;
+    left:number;
 }
 
 class Slider {
-    private elementSlider: HTMLElement;
-    private elementRunner: HTMLElement;
-    private shiftX: number;
-    private sliderCoords: Coords;
+    private elementSlider:HTMLElement;
+    private elementRunner:HTMLElement;
+    private shiftX:number;
+    private sliderCoords:Coords;
 
     public render(parent?:HTMLElement):void {
         let parentElement:HTMLElement = parent || document.body;
@@ -27,20 +27,20 @@ class Slider {
         parentElement.appendChild(this.elementSlider);
 
         this.elementRunner.addEventListener('mousedown', this.captureRunner);
-        this.elementRunner.addEventListener('dragstart', function (event: MouseEvent) {
+        this.elementRunner.addEventListener('dragstart', function (event:MouseEvent) {
             event.preventDefault();
             event.stopPropagation();
         });
     }
 
-    static getCoords(element: HTMLElement):Coords {
-        var box: ClientRect = element.getBoundingClientRect();
+    static getCoords(element:HTMLElement):Coords {
+        var box:ClientRect = element.getBoundingClientRect();
         return {
             left: box.left + pageXOffset
         }
     }
 
-    private moveRunner = (event: MouseEvent):void => {
+    private moveRunner = (event:MouseEvent):void => {
         //  вычесть координату родителя, т.к. position: relative
         var newLeft = event.pageX - this.shiftX - this.sliderCoords.left;
 
@@ -56,7 +56,7 @@ class Slider {
         this.elementRunner.style.left = newLeft + 'px';
     };
 
-    private captureRunner = (event: MouseEvent):void => {
+    private captureRunner = (event:MouseEvent):void => {
         let runnerCoords = Slider.getCoords(this.elementRunner);
 
         this.shiftX = event.pageX - runnerCoords.left;
