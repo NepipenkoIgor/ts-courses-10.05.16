@@ -2,7 +2,7 @@
  * Created by constantant on 18.05.2016.
  */
 
-function isInArray<T>(array: T[], ...targets: T[]): boolean {
+function isInArray<T>(array:T[], ...targets:T[]):boolean {
 
     if (!Array.isArray(array)) {
         throw new TypeError('First argument must be like an Array! ');
@@ -14,26 +14,28 @@ function isInArray<T>(array: T[], ...targets: T[]): boolean {
 
     // работа в массиве с массивом не есть хорошо и почему не ()=>{}
     /* return targets.every(function (target:any) {
-        return array.some(function (item:any) {
-            return item === target;
-        });
-    }); */
+     return array.some(function (item:any) {
+     return item === target;
+     });
+     }); */
 
-    return targets.every(( target: T ) => {
+    return targets.every((target:T) => {
         return array.indexOf(target) !== -1;
     });
+    // можно в одну строчку сократить
+    // return targets.every(( target: T ) => array.indexOf(target) !== -1);
 }
+// но я бы был аккуратен когда сравниваете обьекты, хорошо если у вас ссылка совпадет? а если нет?
 
-
-type test1 = number | {a: number};
+type test1 = number | {a:number};
 type test2 = number | number[];
 type test34 = test2 | string;
 
-let arr: any[] = [],
-    num1: number = 1,
-    num2: string = '2',
-    obj1: {a: number} = {a: 1},
-    obj2: number[] = [1, 2, 3];
+let arr:any[] = [],
+    num1:number = 1,
+    num2:string = '2',
+    obj1:{a:number} = {a: 1},
+    obj2:number[] = [1, 2, 3];
 
 arr.push(num1, num2, obj1, obj2);
 

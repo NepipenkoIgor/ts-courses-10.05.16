@@ -5,6 +5,7 @@
 // почему не типизировать параметры ? 
 function getUnique<T>(...array: T[]): T[] {
     let unique: T[] = [];
+    // arrow function ()=>{}
     array.forEach(function (item: T) {
         let isUnique: boolean = !(unique.indexOf(item) + 1);
 

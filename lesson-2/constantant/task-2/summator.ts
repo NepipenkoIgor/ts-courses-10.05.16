@@ -5,10 +5,12 @@
 // через перегрузку тесты, на строках 23 и 24, не проходят
 function summator(...numbers: (number|string)[]): number {
     let sum = 0;
+    // не забывайте arrow function ()=>{}
     numbers.forEach(function (num: number|string, index: number) {
         let value = typeof num === 'string' ? parseFloat(num) : num;
         // скорее всего достаточно isNaN
         // думаю не достаточно, так как значение может быть любым, например объектом, и оно пройдёт все проверки если оствить только isNaN
+        // isNaN({a:1}) что вернет? 
         if (isNaN(value) || typeof value !== 'number') {
             throw new TypeError(`Argument #${index} is not valid!`);
         }

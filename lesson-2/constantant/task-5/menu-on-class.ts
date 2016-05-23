@@ -64,6 +64,8 @@ class Menu implements MenuInterface {
 
     // document не есть хорошо . Может от елемента меню??
     // getElementById есть только у document https://learn.javascript.ru/searching-elements-dom, это самый быстрый способ, а в качестве контекста тут можно считать this.id
+    // мы используем querySelector , правильным решением будет использовать host element( тоесть на который вы вешаете виджет)
+    // двигаемся в сторону компонентов
     private getItemById(id: string): HTMLElement {
         return document.getElementById(this.getDomId(id));
     }
