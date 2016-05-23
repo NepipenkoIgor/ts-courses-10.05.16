@@ -4,17 +4,21 @@
 
 
 interface Coords {
-    left:number;
+    left: number;
 }
 
-class Slider {
-    private elementSlider:HTMLElement;
-    private elementRunner:HTMLElement;
-    private shiftX:number;
-    private sliderCoords:Coords;
+interface Component {
+    render(parent?: HTMLElement): void;
+}
 
-    public render(parent?:HTMLElement):void {
-        let parentElement:HTMLElement = parent || document.body;
+class Slider implements Component {
+    private elementSlider: HTMLElement;
+    private elementRunner: HTMLElement;
+    private shiftX: number;
+    private sliderCoords: Coords;
+
+    public render(parent?: HTMLElement): void {
+        let parentElement: HTMLElement = parent || document.body;
 
         this.elementSlider = document.createElement('div');
         this.elementSlider.classList.add('slider');
@@ -27,36 +31,37 @@ class Slider {
         parentElement.appendChild(this.elementSlider);
 
         this.elementRunner.addEventListener('mousedown', this.captureRunner);
-        this.elementRunner.addEventListener('dragstart', function (event:MouseEvent) {
+        this.elementRunner.addEventListener('dragstart', function (event: MouseEvent) {
             event.preventDefault();
             event.stopPropagation();
         });
     }
 
-    static getCoords(element:HTMLElement):Coords {
-        var box:ClientRect = element.getBoundingClientRect();
+    static getCoords(element: HTMLElement): Coords {
+        let box: ClientRect = element.getBoundingClientRect();
         return {
             left: box.left + pageXOffset
-        }
+        };
     }
 
-    private moveRunner = (event:MouseEvent):void => {
+    private moveRunner = (event: MouseEvent): void => {
         //  вычесть координату родителя, т.к. position: relative
-        var newLeft = event.pageX - this.shiftX - this.sliderCoords.left;
+        let newLeft: number = event.pageX - this.shiftX - this.sliderCoords.left,
+            rightEdge: number = this.elementSlider.offsetWidth - this.elementRunner.offsetWidth;
 
         // курсор ушёл вне слайдера
         if (newLeft < 0) {
             newLeft = 0;
         }
-        var rightEdge = this.elementSlider.offsetWidth - this.elementRunner.offsetWidth;
+
         if (newLeft > rightEdge) {
             newLeft = rightEdge;
         }
 
-        this.elementRunner.style.left = newLeft + 'px';
+        this.elementRunner.style.left = <string>(newLeft + 'px');
     };
 
-    private captureRunner = (event:MouseEvent):void => {
+    private captureRunner = (event: MouseEvent): void => {
         let runnerCoords = Slider.getCoords(this.elementRunner);
 
         this.shiftX = event.pageX - runnerCoords.left;
@@ -69,11 +74,13 @@ class Slider {
         document.addEventListener('mouseup', this.removeListeners);
     };
 
-    private removeListeners = ():void => {
+    private removeListeners = (): void => {
         document.removeEventListener('mousemove', this.moveRunner);
         document.removeEventListener('mouseup', this.removeListeners);
     }
 }
 
 let slider = new Slider();
+let slider1 = new Slider();
 slider.render();
+slider1.render();
