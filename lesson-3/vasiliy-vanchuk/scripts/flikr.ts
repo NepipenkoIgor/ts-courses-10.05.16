@@ -163,3 +163,9 @@ let flickr = new FlickrApp({
     usersQueryMethod: 'flickr.people.getInfo',
     apiKey: '7fbc4d0fd04492d32fa9a2f718c6293e'
 });
+
+// TODO: describe photo item/response structure
+// TODO: describe peopleInfo item/response structure
+// TODO: add type definitions for .getUsers()
+// TODO: add type definitions for .getOwnersId()
+// TODO: add type definitions for .sort()
