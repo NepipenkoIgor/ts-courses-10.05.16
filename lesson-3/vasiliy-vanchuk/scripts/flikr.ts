@@ -75,6 +75,7 @@ class FlickrApp {
     private elem:HTMLElement;
     private uri:string;
     private queryMethod:string;
+    private usersQueryMethod:string;
     private apiKey:string;
     private input:HTMLInputElement;
     private imagesBox:HTMLDivElement;
@@ -82,10 +83,11 @@ class FlickrApp {
     private photos:IPhoto[];
 
     constructor(opt:opt) {
-        let {elem, uri, queryMethod, apiKey}=opt;
+        let {elem, uri, queryMethod, usersQueryMethod, apiKey}=opt;
         this.elem = elem;
         this.uri = uri;
         this.queryMethod = queryMethod;
+        this.usersQueryMethod = usersQueryMethod;
         this.apiKey = apiKey;
         this.input = <HTMLInputElement>this.elem.querySelector('.flickr-search-input');
         this.imagesBox = <HTMLDivElement>this.elem.querySelector('.image-area');
@@ -99,7 +101,7 @@ class FlickrApp {
         for (let photo of this.photos) {
             content += `<div class="image-box">
 <img src="https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg">
-<p>${photo.title}</p>
+<p>${photo.title} <br /><strong>by ${photo._user.username._content}</strong></p>
 </div>`;
         }
         this.imagesBox.innerHTML = content;
@@ -111,8 +113,7 @@ class FlickrApp {
         }
         let text = this.input.value;
         this.input.value = '';
-        let url = new Request(`${this.uri}method=${this.queryMethod}&api_key=${this.apiKey}&
-        text=${text}&page=1&format=json&nojsoncallback=1`);
+        let url = new Request(`${this.uri}method=${this.queryMethod}&api_key=${this.apiKey}&text=${text}&page=1&format=json&nojsoncallback=1`);
         this.getPhotos(url, cb);
     }
 
@@ -122,20 +123,49 @@ class FlickrApp {
         return newBody;
     }
 
+    private getOwnersId(body:any):string[] {
+        return _.uniq(_.map(body.photos.photo, (item) => item.owner));
+    }
+
+    private getUsers(input:string[]):PromiseLike<any> {
+        return Q.all(input.map((userId) => {
+            let url = new Request(`${this.uri}method=${this.usersQueryMethod}&api_key=${this.apiKey}&user_id=${userId}&format=json&nojsoncallback=1`);
+            return fetch(url)
+                .then((response:Response):PromiseLike<any> => response.json());
+        }));
+    }
+
     private getPhotos(input:string|Request, cb:(body:any)=>any):void {
         fetch(input)
             .then((response:Response):PromiseLike<any>=> {
                 return response.json();
             })
             .then((data:PromiseLike<any>):PromiseLike<any> => this.sort(data))
+            .then((data:PromiseLike<any>):PromiseLike<any> => {
+                const ownersIds = this.getOwnersId(data);
+                return this.getUsers(ownersIds)
+                    .then((users:any[]):PromiseLike<any> => {
+                        data.photos.photo.forEach((photo) => {
+                            photo._user = (_.find(users, (user) => user.person.id === photo.owner) || {}).person;
+                        });
+                        return data;
+                    });
+            })
             .then(cb);
     }
 }
 
-let element=<HTMLDivElement>document.querySelector('.flikr-box');
-let flickr=new FlickrApp({
-    elem:element,
-    uri:'https://api.flickr.com/services/rest/?',
-    queryMethod:'flickr.photos.search',
-    apiKey:'7fbc4d0fd04492d32fa9a2f718c6293e'
+let element = <HTMLDivElement>document.querySelector('.flikr-box');
+let flickr = new FlickrApp({
+    elem: element,
+    uri: 'https://api.flickr.com/services/rest/?',
+    queryMethod: 'flickr.photos.search',
+    usersQueryMethod: 'flickr.people.getInfo',
+    apiKey: '7fbc4d0fd04492d32fa9a2f718c6293e'
 });
+
+// TODO: describe photo item/response structure
+// TODO: describe peopleInfo item/response structure
+// TODO: add type definitions for .getUsers()
+// TODO: add type definitions for .getOwnersId()
+// TODO: add type definitions for .sort()
