@@ -36,15 +36,11 @@ interface InitResponse {
     headers:string|Headers;
 }
 interface ResponseBody {
-    blob:Blob;
-    FormData:FormData;
-    BufferSource:any;
-}
-interface Response extends ResponseBody {
     arrayBuffer:()=> PromiseLike<ArrayBuffer>;
     blob:()=> PromiseLike<Blob>;
     json():PromiseLike<any>;
 }
+interface Response extends ResponseBody {}
 
 declare var Response:{
     prototype:Response;

@@ -1,7 +1,7 @@
 module.exports = {
-    entry: './lesson-3/scripts/main.ts',
+    entry: './lesson-3/class-work/scripts/main.ts',
     output: {
-        path:'./lesson-3/',
+        path:'./lesson-3/class-work/',
         filename: './bundle.js'
     },
     resolve: {

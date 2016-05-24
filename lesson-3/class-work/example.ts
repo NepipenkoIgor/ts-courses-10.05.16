@@ -31,7 +31,7 @@
 // }
 // declare var MyPoint:SomePoint;
 
-/// <reference path="../typings/modules/lodash/index.d.ts" />
+/// <reference path="../../typings/modules/lodash/index.d.ts" />
 
 
 namespace Shipping {
