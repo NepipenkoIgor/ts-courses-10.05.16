@@ -1,4 +1,3 @@
-import _ = require('lodash');
 export class FlikrApp {
     public getPhotos:(input:string | Request, cb:(body:any) => any) => void;
     protected searchHandler:(url:Request) => PromiseLike<(body:any) => any>;

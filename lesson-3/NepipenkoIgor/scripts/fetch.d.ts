@@ -96,6 +96,3 @@ interface IPhoto {
     server: string;
     title: string;
 }
-declare var Q:{
-    all:(arr:PromiseLike<any>[]) => PromiseLike<any>
-};
