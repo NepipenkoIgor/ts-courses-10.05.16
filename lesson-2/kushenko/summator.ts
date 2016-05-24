@@ -6,6 +6,7 @@ type element=string|number;
 
 function summator(...params:element[]):number{
     let sum:number;
+    // ()=>{} и cur:element
     sum = <number>params.reduce(function(sum:number,cur):number{
         let el = parseInt(<string>cur);
         return sum+(isNaN(el)?0:el);

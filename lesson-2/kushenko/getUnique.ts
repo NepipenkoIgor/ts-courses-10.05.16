@@ -5,9 +5,9 @@
  * в котором они встречаются в оригинальной структуре.
  * Специально обрабатывать значение NaN не обязательно.
  */
-
 type a=number|string|boolean;
 function getUnique<T extends a>(...params:T[]):T[]{
+    // ()=>{} и можно в одну строчку
     return params.filter(function(el, index, array){
        return array.indexOf(el) === index;
     });
